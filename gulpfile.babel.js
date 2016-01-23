@@ -17,12 +17,15 @@ const formats = [
   }
 ];
 
-//develop
+//common
 gulp.task('sass', () => {
   return gulp.src('./sass/screen.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./css'));
 });
+
+//develop
+gulp.task('default', ['sass']);
 
 gulp.task('sass:livereload', () => {
   return gulp.src('./sass/screen.scss')
@@ -41,8 +44,6 @@ gulp.task('html:watch', () => {
     .pipe(connect.reload());
   });
 });
-
-gulp.task('default', ['sass']);
 
 gulp.task('webserver', function() {
   connect.server({
