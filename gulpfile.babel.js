@@ -8,7 +8,7 @@ import connect from 'gulp-connect';
 
 const formats = [
   {
-    width: 1200,
+    width: 1500,
     height: 400
   },
   {
