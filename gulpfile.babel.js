@@ -5,6 +5,7 @@ import unmq from 'postcss-unmq';
 import runSequence from 'run-sequence';
 import del from 'del';
 import connect from 'gulp-connect';
+import cssnano from 'gulp-cssnano';
 
 const formats = [
   {
@@ -79,6 +80,7 @@ gulp.task('buildcss', () => {
 
     gulp.src('./css/screen.css')
       .pipe(postcss(processors))
+      .pipe(cssnano())
       .pipe(gulp.dest('./build/' + path));
   });
 });
