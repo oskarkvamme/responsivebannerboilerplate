@@ -1,11 +1,11 @@
-import gulp from 'gulp';
-import postcss from 'gulp-postcss';
-import sass from 'gulp-sass';
-import unmq from 'postcss-unmq';
-import runSequence from 'run-sequence';
-import del from 'del';
-import connect from 'gulp-connect';
-import cssnano from 'gulp-cssnano';
+var gulp = require('gulp');
+var postcss = require('gulp-postcss');
+var sass = require('gulp-sass');
+var unmq = require('postcss-unmq');
+var runSequence = require('run-sequence');
+var del = require('del');
+var connect = require('gulp-connect');
+var cssnano = require('gulp-cssnano');
 
 const formats = [
   {
@@ -19,7 +19,7 @@ const formats = [
 ];
 
 //common
-gulp.task('sass', () => {
+gulp.task('sass', function() {
   return gulp.src('./sass/screen.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./css'));
@@ -28,19 +28,19 @@ gulp.task('sass', () => {
 //develop
 gulp.task('default', ['sass']);
 
-gulp.task('sass:livereload', () => {
+gulp.task('sass:livereload', function() {
   return gulp.src('./sass/screen.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./css'))
     .pipe(connect.reload());
 });
 
-gulp.task('sass:watch', () => {
+gulp.task('sass:watch', function() {
   return gulp.watch('./sass/**/*.scss', ['sass:livereload']);
 });
 
-gulp.task('html:watch', () => {
-  return gulp.watch('./index.html', () =>{
+gulp.task('html:watch', function() {
+  return gulp.watch('./index.html', function() {
     gulp.src('./index.html')
     .pipe(connect.reload());
   });
@@ -63,20 +63,20 @@ gulp.task('clean', function () {
   ]);
 });
 
-gulp.task('movestatic', () => {
-  formats.forEach(format => {
-    const path = format.width + 'X' + format.height;
+gulp.task('movestatic', function() {
+  formats.forEach(function(format) {
+    var path = format.width + 'X' + format.height;
     gulp.src('./index.html').pipe(gulp.dest('./build/' + path));
   });
 });
 
 gulp.task('buildcss', () => {
   formats.forEach(format => {
-    const processors = [
+    var processors = [
       unmq({width : format.width, height: format.height})
     ];
 
-    const path = format.width + 'X' + format.height + '/css';
+    var path = format.width + 'X' + format.height + '/css';
 
     gulp.src('./css/screen.css')
       .pipe(postcss(processors))
@@ -85,6 +85,6 @@ gulp.task('buildcss', () => {
   });
 });
 
-gulp.task('build', () => {
+gulp.task('build', function() {
   return runSequence('clean', ['default', 'movestatic'], 'buildcss');
 });
