@@ -5,6 +5,12 @@ var config = require('../config');
 
 gulp.task('clean-build-folder', function () {
   return del([
-    config.buildCleanPath
+    config.buildRecursivePath
+  ]);
+});
+
+gulp.task('clean-dist-folder', function () {
+  return del([
+    config.distRecursivePath
   ]);
 });

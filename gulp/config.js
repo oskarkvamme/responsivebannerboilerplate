@@ -5,5 +5,6 @@ module.exports = {
   cssDest: './css',
   compiledCss: './css/screen.css',
   buildPath: './build',
-  buildCleanPath: 'build/**/*'
+  buildRecursivePath: 'build/**/*',
+  distRecursivePath: 'dist/**/*'
 };
