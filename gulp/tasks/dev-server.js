@@ -1,8 +1,10 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect');
+var inject = require('gulp-inject-string');
 
 var config = require('../config');
 var compileSass = require('../lib/compileSass');
+var dimensions = require('../dimensions');
 
 var sassPipeDebug = compileSass(true);
 
@@ -26,7 +28,16 @@ gulp.task('webserver', function() {
   });
 });
 
-gulp.task('server', ['sass:debug', 'webserver', 'watch:sass', 'watch:html']);
+gulp.task('createpreview', function(){
+    var result = dimensions.map(function(dimension){
+        return '<div><h3>' + dimension.width + 'X' + dimension.height + '</h3><iframe width="' + dimension.width + '" height="' + dimension.height + '" src="index.html"></iframe></div>'
+    });
+    return gulp.src('./template/preview.html')
+        .pipe(inject.after('<div>', result.join(' ')))
+        .pipe(gulp.dest('.'));
+});
+
+gulp.task('server', ['sass:debug', 'webserver', 'watch:sass', 'watch:html', 'createpreview']);
 
 
 gulp.task('sass:livereload', function() {
