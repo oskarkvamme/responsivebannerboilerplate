@@ -1,4 +1,4 @@
-# fixedsizebannergenerator
+# responsivebannerboilerplate
 Boilerplate for developing responsive banners
 
 ## Getting started
