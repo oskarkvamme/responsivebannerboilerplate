@@ -3,14 +3,56 @@ body{
     padding: 0;
 }
 
-.wrapper{
-    @media #{$breakpoint_1200X400} {
-      width: 1200px;
+#banner{
+
+    cursor:pointer;
+    position: relative;
+    width:100%;
+    height:100%;
+    overflow: hidden;
+
+    @media #{$breakpoint_300X600} {
+      width: 300px;
+      height: 600px;
+    }
+
+    @media #{$breakpoint_180X500} {
+      width: 180px;
+      height: 500px;
+    }
+
+    @media #{$breakpoint_250X250} {
+      width: 250px;
+      height: 250px;
+    }
+
+    @media #{$breakpoint_300X250} {
+      width: 300px;
+      height: 250px;
+    }
+
+    @media #{$breakpoint_320X250} {
+      width: 320px;
+      height: 250px;
+    }
+
+    @media #{$breakpoint_468X300} {
+      width: 468px;
+      height: 300px;
+    }
+
+    @media #{$breakpoint_468X400} {
+      width: 468px;
       height: 400px;
     }
 
-    @media #{$breakpoint_600X200} {
-      width: 600px;
-      height: 200px;
+    @media #{$breakpoint_580X500} {
+      width: 580px;
+      height: 500px;
+    }
+
+    @media #{$breakpoint_980X300} {
+      width: 980px;
+      height: 300px;
     }
 }
