@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper{
+    @media #{$breakpoint_1200X400} {
+      width: 1200px;
+      height: 400px;
+    }
+
+    @media #{$breakpoint_600X200} {
+      width: 600px;
+      height: 200px;
+    }
+}

@@ -1,10 +1,5 @@
-.wrapper{
-  section{
-    display: inline-block;
-    width: 100%;
+@import "./settings/breakpoints";
 
-    @media screen and (min-width: 1000px) {
-      width: 30%;
-    }
-  }
-}
+@import "./modules/layout";
+
+@import "./template";
