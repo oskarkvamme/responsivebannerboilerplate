@@ -4,7 +4,7 @@ var inject = require('gulp-inject-string');
 
 var config = require('../config');
 var compileSass = require('../lib/compileSass');
-var dimensions = require('../dimensions');
+var bannerConfig = require('../../bannerConfig');
 
 var sassPipeDebug = compileSass(true);
 
@@ -20,6 +20,13 @@ gulp.task('watch:html', function() {
   });
 });
 
+gulp.task('watch:js', function() {
+  return gulp.watch(config.jsWatchSource, ['webpack'], function() {
+    gulp.src(config.jsWatchSource)
+    .pipe(connect.reload());
+  });
+});
+
 gulp.task('webserver', function() {
   return connect.server({
     root: '.',
@@ -29,15 +36,15 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('createpreview', function(){
-    var result = dimensions.map(function(dimension){
-        return '<div><h3>' + dimension.width + 'X' + dimension.height + '</h3><iframe width="' + dimension.width + '" height="' + dimension.height + '" src="index.html"></iframe></div>'
+    var result = bannerConfig.banners.map(function(banner){
+        return '<div><h3>' + banner.width + 'X' + banner.height + '</h3><iframe width="' + banner.width + '" height="' + banner.height + '" src="index.html"></iframe></div>'
     });
     return gulp.src('./template/preview.html')
         .pipe(inject.after('<div>', result.join(' ')))
         .pipe(gulp.dest('.'));
 });
 
-gulp.task('server', ['sass:debug', 'webserver', 'watch:sass', 'watch:html', 'createpreview']);
+gulp.task('server', ['sass:debug', 'webpack', 'webserver', 'watch:sass', 'watch:html', 'watch:js', 'createpreview']);
 
 
 gulp.task('sass:livereload', function() {

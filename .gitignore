@@ -2,5 +2,6 @@ node_modules
 build
 dist
 css
+js
 preview.html
 !template/preview.html
