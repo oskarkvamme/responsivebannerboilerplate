@@ -10,6 +10,9 @@ if(!currentBanner.lenght){
     currentBanner = currentBanner[0];
 }
 
+
+//double click dynamic content
+//----------------------------
 //var currentDynamicContent = window.dynamicContent[bannerConfig.googleSheetTabName][0];
 
 //TODO: setup content
