@@ -10,7 +10,7 @@ if(!currentBanner.lenght){
     currentBanner = currentBanner[0];
 }
 
-var currentDynamicContent = window.dynamicContent[bannerConfig.googleSheetTabName][0];
+//var currentDynamicContent = window.dynamicContent[bannerConfig.googleSheetTabName][0];
 
 //TODO: setup content
 //Example

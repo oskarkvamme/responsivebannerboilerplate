@@ -57,7 +57,7 @@ bannerSizes.forEach(function(bannerSize){
 });
 
 gulp.task('screenshot', function (){
-  return new Pageres({delay: 2, filename: '<%= size %>'})
+  return new Pageres({delay: 4, filename: '<%= size %>'})
     .src(config.buildPath + '/index.html', bannerSizes)
     .dest(config.buildPath + '/')
     .run()
