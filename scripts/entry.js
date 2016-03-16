@@ -4,7 +4,7 @@ var currentBanner = bannerConfig.banners.filter(function(banner){
     return window.innerWidth === banner.width && window.innerHeight === banner.height;
 });
 
-if(!currentBanner.lenght){
+if(!currentBanner.length){
     currentBanner = bannerConfig.defaultBanner;
 }else{
     currentBanner = currentBanner[0];
