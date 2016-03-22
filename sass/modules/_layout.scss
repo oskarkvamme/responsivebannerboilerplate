@@ -4,38 +4,68 @@ body{
 }
 
 #banner{
-
     cursor:pointer;
     position: relative;
     width:100%;
     height:100%;
     overflow: hidden;
 
-    @media #{$breakpoint_300X600} {
-      width: 300px;
+    @media #{$breakpoint_120X600} {
+      width: 120px;
       height: 600px;
     }
-
+    @media #{$breakpoint_160X600} {
+      width: 160px;
+      height: 600px;
+    }
     @media #{$breakpoint_180X500} {
       width: 180px;
       height: 500px;
     }
-
+    @media #{$breakpoint_200X200} {
+      width: 200px;
+      height: 200px;
+    }
     @media #{$breakpoint_250X250} {
       width: 250px;
       height: 250px;
     }
-
-    @media #{$breakpoint_300X250} {
+    @media #{$breakpoint_254X133} {
+      width: 254px;
+      height: 133px;
+    }
+	@media #{$breakpoint_300X250} {
       width: 300px;
       height: 250px;
     }
-
+    @media #{$breakpoint_300X350} {
+      width: 300px;
+      height: 350px;
+    }
+    @media #{$breakpoint_300X600} {
+      width: 300px;
+      height: 600px;
+    }  
+	@media #{$breakpoint_320X50} {
+      width: 320px;
+      height: 050px;
+    }
+	@media #{$breakpoint_320X100} {
+      width: 320px;
+      height: 100px;
+    }
     @media #{$breakpoint_320X250} {
       width: 320px;
       height: 250px;
     }
-
+	@media #{$breakpoint_336X280} {
+      width: 336px;
+      height: 280px;
+    }
+    @media #{$breakpoint_468X60} {
+      width: 468px;
+      height: 60px;
+    }
     @media #{$breakpoint_468X300} {
       width: 468px;
       height: 300px;
@@ -45,14 +75,64 @@ body{
       width: 468px;
       height: 400px;
     }
-
-    @media #{$breakpoint_580X500} {
+	@media #{$breakpoint_468X468} {
+      width: 468px;
+      height: 468px;
+    }
+    @media #{$breakpoint_468X600} {
+      width: 468px;
+      height: 600px;
+    }
+    @media #{$breakpoint_470X246} {
+      width: 470px;
+      height: 246px;
+    }
+    @media #{$breakpoint_560X292} {
+      width: 560px;
+      height: 292px;
+    }
+    @media #{$breakpoint_580X400} {
+      width: 580px;
+      height: 400px;
+    }
+	@media #{$breakpoint_580X500} {
       width: 580px;
       height: 500px;
     }
-
+    @media #{$breakpoint_620X530} {
+      width: 620px;
+      height: 530px;
+    }
+    @media #{$breakpoint_728X90} {
+      width: 728px;
+      height: 90px;
+    }
+    @media #{$breakpoint_800X150} {
+      width: 800px;
+      height: 150px;
+    }
+    @media #{$breakpoint_970X90} {
+      width: 970px;
+      height: 90px;
+    }
+    @media #{$breakpoint_980X150} {
+      width: 980px;
+      height: 150px;
+    }
+    @media #{$breakpoint_980X250} {
+      width: 980px;
+      height: 250px;
+    }
     @media #{$breakpoint_980X300} {
       width: 980px;
       height: 300px;
+    }
+    @media #{$breakpoint_980X400} {
+      width: 980px;
+      height: 400px;
+    }
+    @media #{$breakpoint_980X600} {
+      width: 980px;
+      height: 600px;
     }
 }
