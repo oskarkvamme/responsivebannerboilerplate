@@ -6,6 +6,7 @@ module.exports = {
   jsSource: './scripts/entry.js',
   cssDest: './css',
   jsDest: './js',
+	serverDest: './server/',
   compiledJs: './js/entry.js',
   compiledCss: './css/screen.css',
   buildPath: './build',
