@@ -1,5 +1,6 @@
 var gulp = require('gulp');
-var connect = require('gulp-connect');
+var browserSync = require('browser-sync').create();
+
 var inject = require('gulp-inject-string');
 
 var config = require('../config');
@@ -8,31 +9,16 @@ var bannerConfig = require('../../bannerConfig');
 
 var sassPipeDebug = compileSass(true);
 
-
-gulp.task('watch:sass', function() {
-  return gulp.watch(config.sassWatchSource, ['sass:livereload']);
+gulp.task('js-watch', ['webpack'], function (done) {
+    browserSync.reload();
+    done();
 });
 
-gulp.task('watch:html', function() {
-  return gulp.watch(config.indexFile, function() {
-    gulp.src(config.indexFile)
-    .pipe(connect.reload());
-  });
-});
-
-gulp.task('watch:js', function() {
-  return gulp.watch(config.jsWatchSource, ['webpack'], function() {
-    gulp.src(config.jsWatchSource)
-    .pipe(connect.reload());
-  });
-});
-
-gulp.task('webserver', function() {
-  return connect.server({
-    root: '.',
-    livereload: true,
-    port: 8888
-  });
+gulp.task('sass:livereload', function() {
+  return gulp.src('./sass/screen.scss')
+    .pipe(sassPipeDebug())
+    .pipe(gulp.dest(config.cssDest))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('createpreview', function(){
@@ -44,12 +30,23 @@ gulp.task('createpreview', function(){
         .pipe(gulp.dest('.'));
 });
 
-gulp.task('server', ['sass:debug', 'webpack', 'webserver', 'watch:sass', 'watch:html', 'watch:js', 'createpreview']);
+gulp.task('webserver', function() {
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    });
 
+    //html
+    gulp.watch(config.indexFile).on('change', browserSync.reload);
 
-gulp.task('sass:livereload', function() {
-  return gulp.src('./sass/screen.scss')
-    .pipe(sassPipeDebug())
-    .pipe(gulp.dest(config.cssDest))
-    .pipe(connect.reload());
+    //sass
+    gulp.watch(config.sassWatchSource, ['sass:livereload']);
+
+    //javascript
+    gulp.watch(config.jsWatchSource, ['js-watch']);
 });
+
+
+
+gulp.task('server', ['sass:debug', 'webpack', 'createpreview', 'webserver']);
