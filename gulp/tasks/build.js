@@ -95,9 +95,9 @@ bannerSizes.forEach(function(bannerSize){
 
 
   gulp.task('zip-' + bannerSize, function() {
-      return gulp.src(config.buildPath + '/{index' + bannerSize + '.html,' + bannerSize + '.png}')
+      return gulp.src(config.buildPath + '/{index' + bannerSize + '.html,' + bannerSize + '.jpg}')
           .pipe(rename(function (path) {
-            if(path.extname === '.png'){
+            if(path.extname === '.jpg'){
               path.basename = 'preview';
             }
             if (path.extname === '.html') {
@@ -110,7 +110,7 @@ bannerSizes.forEach(function(bannerSize){
 });
 
 gulp.task('screenshot', function (){
-  return new Pageres({delay: 4, filename: '<%= size %>'})
+  return new Pageres({delay: 4, filename: '<%= size %>', format: 'jpg'})
     .src(config.buildPath + '/index.html', bannerSizes)
     .dest(config.buildPath + '/')
     .run()
