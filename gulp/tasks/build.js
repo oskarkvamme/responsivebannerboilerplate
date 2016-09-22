@@ -86,7 +86,7 @@ bannerSizes.forEach(function(bannerSize){
       return gulp.src(config.indexFile)
             .pipe(inject.replace('<link rel="stylesheet" type="text/css" href="css/screen.css" />', css))
             .pipe(inject.replace('<script src="js/entry.js"></script>', script))
-            .pipe(inject.replace('<script id="currentBanner"></script>', currentBannerScript))
+            .pipe(inject.replace('<script id="currentBannerScript"></script>', currentBannerScript))
             .pipe(rename(function (path) {
                 path.basename = 'index' + bannerSize;
             }))
