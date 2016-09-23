@@ -33,8 +33,14 @@ gulp.task('createpreview', function(){
 gulp.task('webserver', function() {
     browserSync.init({
         server: {
-            baseDir: "./"
-        }
+            baseDir: './',
+            index: 'preview.html'
+        },
+        ghostMode: {
+	        clicks: false,
+	        forms: false,
+	        scroll: false
+		}
     });
 
     //html
