@@ -9,6 +9,11 @@ var bannerConfig = require('../../bannerConfig');
 
 var sassPipeDebug = compileSass(true);
 
+var logError = function(error) {
+    console.log(error.toString());
+    this.emit('end');
+};
+
 gulp.task('js-watch', ['webpack'], function (done) {
     browserSync.reload();
     done();
@@ -17,6 +22,7 @@ gulp.task('js-watch', ['webpack'], function (done) {
 gulp.task('sass:livereload', function() {
   return gulp.src('./sass/screen.scss')
     .pipe(sassPipeDebug())
+    .on('error', logError)
     .pipe(gulp.dest(config.cssDest))
     .pipe(browserSync.stream({match: '**/*.css'}));
 });
