@@ -18,7 +18,7 @@ gulp.task('sass:livereload', function() {
   return gulp.src('./sass/screen.scss')
     .pipe(sassPipeDebug())
     .pipe(gulp.dest(config.cssDest))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 gulp.task('createpreview', function(){
