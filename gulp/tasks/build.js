@@ -8,6 +8,8 @@ var fs = require('fs');
 var Pageres = require('pageres');
 var rename = require('gulp-rename');
 var postcss = require('gulp-postcss');
+var toJSON = require('gulp-js-to-json');
+
 
 var config = require('../config');
 var bannerConfig = require('../../bannerConfig');
@@ -116,6 +118,31 @@ gulp.task('screenshot', function (){
     .run()
 });
 
+gulp.task('stringify-config', function() {
+  return gulp.src('./bannerConfig.js', {read: false})
+       .pipe(toJSON())
+       .pipe(gulp.dest('dist/admin'));
+});
+
+gulp.task('admin-index', function() {
+  return gulp.src(config.buildPath + '/index.html')
+    .pipe(inject.replace('<!-- PREVIEW GLOBALS -->', '<%= content %>'))
+    .pipe(rename(function (path) {
+      path.extname = '.ejs';
+    }))
+    .pipe(gulp.dest('dist/admin'));
+});
+
+gulp.task('admin-zip', function() {
+    return gulp.src('dist/admin/**/*')
+        .pipe(zip('admin.zip'))
+        .pipe(gulp.dest('dist/admin'));
+});
+
 gulp.task('build', function() {
   return runSequence('clean-build-folder', 'sass:dist', 'webpack', 'buildstandardfinalcss', cssTasks, 'buildfinaljs', htmlTasks, 'buildstandardhtml', 'clean-dist-folder', 'screenshot', zipTasks);
 });
+
+gulp.task('build-admin', function() {
+  return runSequence('clean-build-folder', 'sass:dist', 'webpack', 'buildstandardfinalcss', 'buildfinaljs', 'buildstandardhtml', 'clean-dist-folder', 'stringify-config', 'admin-index', 'admin-zip');
+})

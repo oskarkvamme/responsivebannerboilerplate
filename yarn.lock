@@ -2035,6 +2035,13 @@ gulp-inject-string@^1.1.0:
     event-stream "^3.1.7"
     gulp-util "^3.0.0"
 
+gulp-js-to-json@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/gulp-js-to-json/-/gulp-js-to-json-1.1.2.tgz#178b0c680c1c9b1b3ddcdbdb3b9f23d2082b75f5"
+  dependencies:
+    gulp-util "^3.0.8"
+    through2 "^2.0.1"
+
 gulp-minify@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/gulp-minify/-/gulp-minify-1.0.0.tgz#f41ba577eba44b4b4f514b6306c69ddd3f9a1ffc"
